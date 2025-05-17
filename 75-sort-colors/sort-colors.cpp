@@ -1,25 +1,16 @@
 class Solution {
 public:
-
-    void quickSort(vector<int> &arr, int low, int high) {
-    if (low < high) {
-        int pivot = arr[high]; 
-        int i = (low - 1);  
-
-        for (int j = low; j <= high; j++) {
-            if (arr[j] < pivot) {
-                i++;
-                swap(arr[i], arr[j]);
+    void sortColors(vector<int>& nums) {
+        int n=nums.size();
+        int mid=0,high=n-1,low=0;
+        while(mid<=high){
+            if(nums[mid]==0){
+                swap(nums[mid++],nums[low++]);
+            }else if(nums[mid]==1){
+                mid++;
+            }else{
+                swap(nums[high--],nums[mid]);
             }
         }
-        swap(arr[i + 1], arr[high]);
-
-        int partitionIndex = i + 1;
-        quickSort(arr, low, partitionIndex - 1);
-        quickSort(arr, partitionIndex + 1, high);
-    }
-}
-    void sortColors(vector<int>& nums) {
-        quickSort(nums,0,nums.size() - 1);
     }
 };
